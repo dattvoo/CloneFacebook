@@ -11,5 +11,5 @@ export function userReducer(
 
     default:
       return state;
-  }
+  } 
 }
