@@ -5,7 +5,6 @@ import { ArrowDown, Friends, Gaming, HomeActive, Logo, Menu, Messenger, Notifica
 import { useSelector } from "react-redux";
 export const Header = () => {
     const user = useSelector((state) => state.user);
-    console.log(user);
     return (
         <header>
             <div className="header_left">
