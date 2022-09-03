@@ -6,11 +6,12 @@ export default function Home() {
   const el = useRef(null);
   const [visable, setVisible] = useState(true);
   useClickOutSide(el, () => {
-    // el.current.style.display = "none";
     setVisible(false);
   });
-  return <div>
-    <Header />
-    {visable && <div className="card" ref={el}></div>}
-  </div>;
+  return (
+    <div>
+      <Header />
+      {visable && <div className="card" ref={el}></div>}
+    </div>
+  )
 }

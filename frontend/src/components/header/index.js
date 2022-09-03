@@ -1,10 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import "./style.css";
-import { ArrowDown, Friends, Gaming, HomeActive, Logo, Menu, Messenger, Notifications, Search, Watch } from "../../svg";
+import React, { useState } from 'react';
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { ArrowDown, Friends, Gaming, HomeActive, Logo, Menu, Messenger, Notifications, Search, Watch } from "../../svg";
+import { SearchMenu } from './SearchMenu';
+import "./style.css";
 export const Header = () => {
     const user = useSelector((state) => state.user);
+    const color = "#65676b";
+    const [showSearchMenu, setShowSearchMenu] = useState(false);
+    
     return (
         <header>
             <div className="header_left">
@@ -13,11 +17,14 @@ export const Header = () => {
                         <Logo />
                     </div>
                 </Link>
-                <div className="search search1">
-                    <Search />
+                <div className="search search1" onClick={() => { setShowSearchMenu(true) }} >
+                    <div>
+                        <Search />
+                    </div>
                     <input type="text" placeholder="Search Facebook" className="hide_input" />
                 </div>
             </div>
+            {showSearchMenu && <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu}/>}
             <div className="header_middle">
                 <Link to="/" className="middle_icon hover1 active">
                     <HomeActive />
