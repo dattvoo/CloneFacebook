@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import useClickOutSide from '../../helpers/clickOutSide';
-import { Search, Return } from '../../svg'
-
+import useClickOutSide from '../../../helpers/clickOutSide';
+import { Search, Return } from '../../../svg'
+import "./style.css";
 export const SearchMenu = ({ color, setShowSearchMenu }) => {
     const SearchMenuRef = useRef(null);
     const inputRef = useRef(null);
@@ -35,7 +35,7 @@ export const SearchMenu = ({ color, setShowSearchMenu }) => {
             </div>
             <div className="search_history_header">
                 <span>Recently searches</span>
-                <a href="!#">Edit</a>
+                <a href="#!">Edit</a>
             </div>
             <div className="search_history"></div>
             <div className="search_resuilt scrollbar"></div>

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import useClickOutSide from '../../helpers/clickOutSide';
 import { ArrowDown, Friends, Gaming, HomeActive, Logo, Menu, Messenger, Notifications, Search, Watch } from "../../svg";
+import { AllMenu } from './AllMenu';
 import { SearchMenu } from './SearchMenu';
 import "./style.css";
 export const Header = () => {
     const user = useSelector((state) => state.user);
     const color = "#65676b";
     const [showSearchMenu, setShowSearchMenu] = useState(false);
-    
+    const [showAllMenu, setShowAllMenu] = useState(false);
+    const AllMenuRef = useRef(null);
+    useClickOutSide(AllMenuRef, () => {
+        setShowAllMenu(false);
+      });
     return (
         <header>
             <div className="header_left">
@@ -42,8 +48,9 @@ export const Header = () => {
             </div>
             <div className="header_right">
 
-                <div className="circle_icon hover1">
+                <div className="circle_icon hover1" onClick={() => {setShowAllMenu(!showAllMenu)}} ref={AllMenuRef}>
                     <Menu />
+                    {showAllMenu && <AllMenu/>}
                 </div>
                 <div className="circle_icon hover1">
                     <Messenger />
