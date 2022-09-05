@@ -6,6 +6,7 @@ import { ArrowDown, Friends, Gaming, HomeActive, Logo, Menu, Messenger, Notifica
 import { AllMenu } from './AllMenu';
 import { SearchMenu } from './SearchMenu';
 import "./style.css";
+import { UserMenu } from './UserMenu';
 export const Header = () => {
     const user = useSelector((state) => state.user);
     const color = "#65676b";
@@ -50,7 +51,7 @@ export const Header = () => {
 
                 <div className="circle_icon hover1" onClick={() => {setShowAllMenu(!showAllMenu)}} ref={AllMenuRef}>
                     <Menu />
-                    {showAllMenu && <AllMenu/>}
+                    {showAllMenu && <AllMenu  />}
                 </div>
                 <div className="circle_icon hover1">
                     <Messenger />
@@ -61,6 +62,7 @@ export const Header = () => {
                 </div>
                 <div className="circle_icon hover1">
                     <ArrowDown />
+                    <UserMenu user={user}/>
                 </div>
                 <Link to="/profile" className="profile_link hover1">
                     <img alt="" src={user?.picture} />
