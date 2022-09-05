@@ -70,6 +70,11 @@ a {
 .hover2:hover {
   background: var(--bg-third);
 }
+.hover3:hover {
+  background: #d4d6da3a;
+}
+
+
 .card {
   width: 500px;
   height: 500px;
@@ -83,5 +88,19 @@ a {
   background: #c3c3dfa1;
   border-radius: 8px;
 }
-
 /* Scroll Bar */
+
+/* Small Circles */
+.small_circle{
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin-right: 11px;
+  background: var(--bg-third);
+  cursor: pointer;
+}
+/* Small Circles */
