@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { DisplayAccessbility } from "../DisplayAccessbility";
+import HelpSupport from "../HelpSupport";
 import  SettingPrivacy  from "../SettingPrivacy";
 import "./style.css";
 export const UserMenu = ({ user }) => {
-  const [visible, setVisible] = useState(1);
+  const [visible, setVisible] = useState(0);
   return (
     <div className="mmenu">
       {visible === 0 && (
@@ -30,9 +32,9 @@ export const UserMenu = ({ user }) => {
           </div>
 
           <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3">
+          <div className="mmenu_item hover3" onClick={() => setVisible(1)}>
             <div className="small_circle">
-              <i className="settings_filled_icon"></i>
+              <i className="settings_filled_icon" ></i>
             </div>
             <span>Setting & privacy</span>
             <div className="rArrow">
@@ -41,7 +43,7 @@ export const UserMenu = ({ user }) => {
           </div>
 
           <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3">
+          <div className="mmenu_item hover3" onClick={() => setVisible(2)}>
             <div className="small_circle">
               <i className="help_filled_icon"></i>
             </div>
@@ -52,7 +54,7 @@ export const UserMenu = ({ user }) => {
           </div>
 
           <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3">
+          <div className="mmenu_item hover3" onClick={() => {setVisible(3)}}>
             <div className="small_circle">
               <i className="dark_filled_icon"></i>
             </div>
@@ -71,7 +73,9 @@ export const UserMenu = ({ user }) => {
           </div>
         </div>
       )}
-      {visible === 1 && <SettingPrivacy/>}
+      {visible === 1 && <SettingPrivacy setVisible={setVisible}/>}
+      {visible === 2 && <HelpSupport setVisible={setVisible}/>}
+      {visible === 3 && <DisplayAccessbility setVisible={setVisible}/>}
     </div>
   );
 };
