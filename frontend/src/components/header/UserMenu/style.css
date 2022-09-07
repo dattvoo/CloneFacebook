@@ -29,9 +29,8 @@
   justify-content: center;
 }
 .mmenu_col span:first-of-type {
-  color: var(--bg-primary);
   font-weight: 600;
-  font-style: 15px;
+  font-size: 15px;
   letter-spacing: 1px;
 }
 .mmenu_col span:last-of-type {
