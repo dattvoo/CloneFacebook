@@ -26,7 +26,6 @@ export const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const AllMenuRef = useRef(null);
   const userMenuRef = useRef(null);
-
   useClickOutSide(AllMenuRef, () => {
     setShowAllMenu(false);
   });
@@ -101,7 +100,7 @@ export const Header = () => {
         </div>
         <Link to="/profile" className="profile_link hover1">
           <img alt="" src={user?.picture} />
-          <span>{user?.first_name}</span>
+          {/* <span>{user?.first_name}</span> */}
         </Link>
       </div>
     </header>
