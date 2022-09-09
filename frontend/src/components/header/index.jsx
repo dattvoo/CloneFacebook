@@ -75,7 +75,10 @@ export const Header = () => {
         </Link>
       </div>
       <div className="header_right">
-        <div className="circle_icon hover1" ref={AllMenuRef}>
+        <div
+          className={`circle_icon hover1 ${showAllMenu && "active_header"}`}
+          ref={AllMenuRef}
+        >
           <div
             onClick={() => {
               setShowAllMenu(!showAllMenu);
@@ -92,7 +95,10 @@ export const Header = () => {
           <Notifications />
           <div className="right_notification">6</div>
         </div>
-        <div className="circle_icon hover1" ref={userMenuRef}>
+        <div
+          className={`circle_icon hover1 ${showUserMenu && "active_header"}`}
+          ref={userMenuRef}
+        >
           <div className="" onClick={() => setShowUserMenu((prev) => !prev)}>
             <ArrowDown />
           </div>

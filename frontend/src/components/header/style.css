@@ -100,8 +100,8 @@ header {
   border-radius: 50px;
 }
 .profile_link img {
-  width:40px;
-  height:40px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid transparent #b0b3b8;
   transform: translateX(-1px);
@@ -133,5 +133,11 @@ header {
 }
 
 /* End Header Right */
-
-
+/* Active Header */
+  .active_header {
+    background-color: var(--light-blue-color);
+  }
+  .active_header svg {
+    fill: var(--blue-color);
+  }
+/*End Active Header */
