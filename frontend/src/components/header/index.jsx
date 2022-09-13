@@ -78,12 +78,11 @@ export const Header = () => {
         <div
           className={`circle_icon hover1 ${showAllMenu && "active_header"}`}
           ref={AllMenuRef}
+          onClick={() => {
+            setShowAllMenu(!showAllMenu);
+          }}
         >
-          <div
-            onClick={() => {
-              setShowAllMenu(!showAllMenu);
-            }}
-          >
+          <div>
             <Menu />
           </div>
           {showAllMenu && <AllMenu />}
@@ -98,8 +97,9 @@ export const Header = () => {
         <div
           className={`circle_icon hover1 ${showUserMenu && "active_header"}`}
           ref={userMenuRef}
+          onClick={() => setShowUserMenu((prev) => !prev)}
         >
-          <div className="" onClick={() => setShowUserMenu((prev) => !prev)}>
+          <div className="">
             <ArrowDown />
           </div>
           {showUserMenu && <UserMenu user={user} />}
