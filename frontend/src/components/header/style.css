@@ -96,7 +96,7 @@ header {
   align-items: center;
   gap: 5px;
   cursor: pointer;
-  padding: 0px 10px 0px 6px;
+  margin: 0px 10px 0px 6px;
   border-radius: 50px;
 }
 .profile_link img {
