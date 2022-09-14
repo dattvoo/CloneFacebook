@@ -82,7 +82,7 @@ export const Header = () => {
             setShowAllMenu(!showAllMenu);
           }}
         >
-          <div>
+          <div style={{transform:"translateY(2px)"}}>
             <Menu />
           </div>
           {showAllMenu && <AllMenu />}
