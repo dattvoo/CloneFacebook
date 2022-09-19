@@ -1,10 +1,160 @@
 .home {
   min-height: 100vh;
   background: var(--bg-secondary);
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 .home_middle {
-    margin-top: 75px;
-    margin-left: 31.8vw;
+  margin-top: 75px;
+  /* margin-left: 31.8vw; */
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+@media (max-width: 1175px) {
+  .stories,
+  .create_post {
+    width: 100% !important;
+  }
+  .home_middle {
+    margin-left: 5%;
+  }
+  .stories {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+@media (max-width: 1030px) {
+  .left_home .left_link span,
+  .left_home .left_link .col,
+  .shortcut,
+  .shortcut_item span,
+  .splitter,
+  .fb_coppyright {
+    display: none !important;
+  }
+  .create_post {
+    width: 100% !important;
+  }
+  .left_home {
+    width: 70px;
+  }
+  .left_link {
+    background: var(--bg-third);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+  .home_middle {
+    /* position: relative; */
+    margin-left: 0px;
+  }
+  .right_home {
+    width: 20vw !important;
+  }
+  .contacts_header_right {
+    right: 14px !important;
+  }
+  .contact_circle {
+    width: 20px !important;
+  }
+  .stories,
+  .create_post {
+    width: 100%;
+  }
+}
+@media (max-width: 960px) {
+  .stories {
+    width: 95%;
+  }
+  .home_middle {
+    margin-left: 0;
+  }
+  .right_home {
+    left: 78%;
+    width: 20vw;
+  }
+  .splitter1 {
+    width: 20vw;
+  }
+  .contact_circle {
+    width: 30px;
+  }
+  .contact_header_right {
+    right: 0;
+  }
+  .stories {
+    grid-template-columns: repeat(5, 105px);
+  }
+}
+@media (max-width: 885px) {
+  .right_home {
+    display: none;
+  }
+  .create_post {
+    width: 100% !important;
+  }
+  .stories {
+    width: 100%;
+  }
+  .home_middle {
+    margin-left: 9%;
+  }
+  .stories {
+    grid-template-columns: repeat(5, 120px) !important;
+  }
+}
+@media (max-width: 805px) {
+  .stories {
+    grid-template-columns: repeat(5, 13vw) !important;
+  }
+  .story_profile_name,
+  .story_create_text {
+    display: none;
+  }
+  .create_story_card {
+    filter: brightness(96%);
+  }
+  .stories .white_circle {
+    right: -4%;
+  }
+  .story_profile_pic {
+    width: 7vw;
+    height: 7vw;
+  }
+  .left_home::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  .left_home {
+    display: none !important;
+  }
+  .home_middle {
+    position: absolute;
+    margin-left: 0;
+  }
+  .stories,
+  .create_post {
+    width: 100% !important;
+  }
+  .stories .white_circle {
+    display: none;
+  }
+  .stories {
+    grid-template-columns: repeat(5, 17vw) !important;
+  }
+  .story, .create_story_card {
+    height: 30vw;
+  } 
+  .createPost_icon {
+    font-size: 12px;
+  }
+  .open_post {
+    font-size: 16px;
+  }
+  .create_post_icon svg {
+    width: 20px;
+  }
 }
