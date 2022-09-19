@@ -1,6 +1,6 @@
 .splitter1 {
     height:1px;
     background: var(--divider);
-    width: 17vw;
+    width: 100%;
     margin: 6px 2px 0 12px;
 }
