@@ -1,11 +1,21 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { DisplayAccessbility } from "../DisplayAccessbility";
 import HelpSupport from "../HelpSupport";
-import  SettingPrivacy  from "../SettingPrivacy";
+import SettingPrivacy from "../SettingPrivacy";
 import "./style.css";
 export const UserMenu = ({ user }) => {
   const [visible, setVisible] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    Cookies.set("user", "");
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  }
+
   return (
     <div className="mmenu">
       {visible === 0 && (
@@ -54,7 +64,7 @@ export const UserMenu = ({ user }) => {
           </div>
 
           <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3" onClick={() => {setVisible(3)}}>
+          <div className="mmenu_item hover3" onClick={() => { setVisible(3) }}>
             <div className="small_circle">
               <i className="dark_filled_icon"></i>
             </div>
@@ -65,7 +75,7 @@ export const UserMenu = ({ user }) => {
           </div>
 
           <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3">
+          <div className="mmenu_item hover3" onClick={handleLogout}>
             <div className="small_circle">
               <i className="logout_filled_icon"></i>
             </div>
@@ -73,9 +83,9 @@ export const UserMenu = ({ user }) => {
           </div>
         </div>
       )}
-      {visible === 1 && <SettingPrivacy setVisible={setVisible}/>}
-      {visible === 2 && <HelpSupport setVisible={setVisible}/>}
-      {visible === 3 && <DisplayAccessbility setVisible={setVisible}/>}
+      {visible === 1 && <SettingPrivacy setVisible={setVisible} />}
+      {visible === 2 && <HelpSupport setVisible={setVisible} />}
+      {visible === 3 && <DisplayAccessbility setVisible={setVisible} />}
     </div>
   );
 };
