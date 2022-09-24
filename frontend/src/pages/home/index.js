@@ -5,8 +5,9 @@ import { LeftHome } from "../../components/home/Left";
 import { useSelector } from "react-redux";
 import { RightHome } from "../../components/home/Right";
 import { Stories } from "../../components/home/stories";
-import "./style.css"; 
+import "./style.css";
 import { CreatePost } from "../../components/createPost";
+import { SendVerification } from "../../components/header/SendVerification";
 export default function Home() {
   const user = useSelector(state => state.user);
   return (
@@ -14,10 +15,11 @@ export default function Home() {
       <Header />
       <LeftHome user={user} />
       <div className="home_middle">
-        <Stories/>
-        <CreatePost/>
+        <Stories />
+        {!user.verify && <SendVerification user={user} />}
+        <CreatePost />
       </div>
-      <RightHome user={user}/>
+      <RightHome user={user} />
     </div>
   );
 }

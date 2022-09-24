@@ -141,3 +141,22 @@ exports.auth = (req, res) => {
   console.log(req.user);
   res.json("Welcome from auth");
 }
+exports.sendVerification = async (req, res, next) => {
+  console.log("Request:", req);
+  const userId = req.user.id;
+  const user = await User.findById(userId);
+  try {
+    if (user.verified) {
+      return res.status(400).json({ message: "This account is  already activated" })
+    }
+    const emailVerificationToken = generateToken(
+      { id: user?._id.toString() },
+      "30m"
+    )
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, url)
+    return res.status(200).json({ message: "Email verification link has been start to your email" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+} 
