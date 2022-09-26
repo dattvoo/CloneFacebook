@@ -9,10 +9,9 @@ export function userReducer(
       return action.payload;
     case "ACTIVATE":
       return {
-        ...state, verify: action.payload
+        ...state, verified: action.payload
       }
     case "LOGOUT":
-      console.log("dispath is success");
       return null;
 
     default:
