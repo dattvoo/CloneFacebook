@@ -10,13 +10,14 @@ import { CreatePost } from "../../components/createPost";
 import { SendVerification } from "../../components/header/SendVerification";
 export default function Home() {
   const user = useSelector(state => state.user);
+  console.log(user.verified);
   return (
     <div className="home">
       <Header />
       <LeftHome user={user} />
       <div className="home_middle">
         <Stories />
-        {!user.verify && <SendVerification user={user} />}
+        {user.verified === false && <SendVerification user={user} />}
         <CreatePost />
       </div>
       <RightHome user={user} />
