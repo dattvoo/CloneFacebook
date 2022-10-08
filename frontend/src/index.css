@@ -53,6 +53,22 @@ a {
   gap: 6px;
   cursor: pointer;
 }
+.gray_btn {
+  border: none;
+  outline: none;
+  background: var(--bg-secondary);
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
 /*----Buttons----*/
 .blur {
   position: fixed;
@@ -74,11 +90,10 @@ a {
   background: #d4d6da3a;
 }
 
-
 .card {
   width: 500px;
   height: 500px;
-  background:red;
+  background: red;
 }
 /* Scroll Bar */
 .scrollbar::-webkit-scrollbar {
@@ -91,14 +106,14 @@ a {
 /* Scroll Bar */
 
 /* Small Circles */
-.small_circle{
+.small_circle {
   position: relative;
   height: 36px;
   width: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   margin-right: 11px;
   background: var(--bg-third);
   cursor: pointer;
