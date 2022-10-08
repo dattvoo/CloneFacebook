@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import { LoggedInRoutes } from "./routes/LoggedInRoutes";
 import { NotLoggedInRoutes } from "./routes/NotLoggedInRoutes";
 import Activate from "./pages/home/Activate";
+import { ResetPassword } from "./pages/resetpassword";
 function App() {
   return (
     <div>
@@ -17,6 +18,7 @@ function App() {
         <Route element={<NotLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />
         </Route>
+        <Route element={<ResetPassword/>} path="/reset"/>
       </Routes>
     </div>
   );
