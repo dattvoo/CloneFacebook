@@ -1,16 +1,19 @@
-import { Form, Formik } from "formik";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import LoginInput from "../../components/inputs/loginInput";
+import { SearchAccount } from "./SearchAccount";
+import { SendMail } from "./SendMail";
+import { CodeVerification } from "./CodeVerification";
 import "./style.css";
+import Footer from "../../components/login/Footer";
 export const ResetPassword = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(0);
+  const [visible, setVisible] = useState(2);
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const logout = () => {
     Cookies.set("user", "");
@@ -42,37 +45,20 @@ export const ResetPassword = () => {
         )}
       </div>
       <div className="reset_wrap">
-        <div className="reset_form">
-          <div className="reset_form_header">Find Your Account</div>
-          <div className="reset_form_text">
-            Please enter your mail address or mobile number to search for your
-            account.
-          </div>
-          <Formik enableReinitialize initialValues={{ email }}>
-            {(formik) => (
-              <Form>
-                <LoginInput
-                  value={formik.email}
-                  type="tetx"
-                  name="email"
-                  placeholder="Enter your email address"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-                {error && <div className="error_text">{error}</div>}
-                <div className="reset_form_btns">
-                  <Link to="/login" className="gray_btn">
-                    Cancle
-                  </Link>
-                  <button type="submit" className="blue_btn">Search</button>
-                </div>
-              </Form>
-
-            )}
-          </Formik>
-        </div>
+        {visible === 0 && (
+          <SearchAccount email={email} error={error} setEmail={setEmail} />
+        )}
+        {visible === 1 && <SendMail user={user} />}
+        {visible === 2 && (
+          <CodeVerification
+            user={user}
+            code={code}
+            setCode={setCode}
+            error={error}
+          />
+        )}
       </div>
+      <Footer />
     </div>
   );
 };
