@@ -7,14 +7,17 @@ import { SendMail } from "./SendMail";
 import { CodeVerification } from "./CodeVerification";
 import "./style.css";
 import Footer from "../../components/login/Footer";
+import { ChangePassword } from "./ChangePassword";
 export const ResetPassword = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(2);
+  const [visible, setVisible] = useState(0);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const [conf_pass, setConfPass] = useState("");
   const logout = () => {
     Cookies.set("user", "");
     dispatch({ type: "LOGOUT" });
@@ -55,6 +58,14 @@ export const ResetPassword = () => {
             code={code}
             setCode={setCode}
             error={error}
+          />
+        )}
+        {visible === 3 && (
+          <ChangePassword
+            password={password}
+            setPassword={setPassword}
+            conf_pass={conf_pass}
+            setConfPass={setConfPass}
           />
         )}
       </div>
