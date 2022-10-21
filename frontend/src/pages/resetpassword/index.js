@@ -12,7 +12,7 @@ export const ResetPassword = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(0);
+  const [visible, setVisible] = useState(3);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
