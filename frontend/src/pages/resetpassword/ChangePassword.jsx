@@ -12,7 +12,7 @@ export const ChangePassword = (props) => {
       .max("32", "Password can't be more than 36 character"),
     conf_pass: Yup.string()
       .required("Confirm password is required!")
-      .oneOf([Yup.ref("password")], "Confirm password is not match"),
+      .oneOf([Yup.ref("password")], "Confirm password is not match!"),
   });
 
   return (

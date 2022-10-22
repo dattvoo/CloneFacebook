@@ -138,11 +138,9 @@ exports.login = async (req, res) => {
   }
 };
 exports.auth = (req, res) => {
-  console.log(req.user);
   res.json("Welcome from auth");
 }
 exports.sendVerification = async (req, res, next) => {
-  console.log("Request:", req);
   const userId = req.user.id;
   const user = await User.findById(userId);
   try {
@@ -159,4 +157,23 @@ exports.sendVerification = async (req, res, next) => {
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }
-} 
+}
+exports.findUser = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select("-password");
+    if (!user) {
+      return res.status(400).json({
+        message: "Account is not exits!"
+      })
+    }
+    return res.status(200).json({
+      email: user.email,
+      picture: user.picture,
+      username: user.username
+    })
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+
+}
