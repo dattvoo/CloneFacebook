@@ -35,10 +35,7 @@ export const SearchAccount = (props) => {
       setLoading(false);
       setVisible(1);
     } catch (error) {
-      console.log(
-        "🚀 ~ file: SearchAccount.jsx ~ line 38 ~ handleSearch ~ error",
-        error
-      );
+     
       setLoading(false);
       setError(error.respone.data.message);
     }

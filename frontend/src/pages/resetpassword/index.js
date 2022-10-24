@@ -60,15 +60,30 @@ export const ResetPassword = () => {
             setVisible={setVisible}
             setError={setError}
             setUserInfos={setUserInfos}
+          /> 
+        )}
+        {visible === 1 && userInfos && (
+          <SendMail
+            userInfos={userInfos}
+            email={email}
+            error={error}
+            setEmail={setEmail}
+            setLoading={setLoading}
+            setVisible={setVisible}
+            setError={setError}
           />
         )}
-        {visible === 1 && userInfos && <SendMail userInfos={userInfos} />}
         {visible === 2 && (
           <CodeVerification
-            user={user}
+            email={email}
+            error={error}
+            setEmail={setEmail}
+            setLoading={setLoading}
+            setVisible={setVisible}
+            setError={setError}
             code={code}
             setCode={setCode}
-            error={error}
+            user={user}
           />
         )}
         {visible === 3 && (

@@ -1,7 +1,33 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const SendMail = ({ userInfos }) => {
+export const SendMail = ({
+  userInfos,
+  error,
+  setError,
+  setVisible,
+  setUserInfos,
+  loading,
+  setLoading,
+  email,
+
+}) => {
+  const sendMail = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/sendResetCodeVerification`,
+        { email }
+      );
+      setError("");
+      setLoading(false);
+      setVisible(2);
+    } catch (error) {
+      setLoading(false);
+      setError(error?.response?.data.message);
+    }
+  };
   return (
     <div className="reset_form dynamic_height">
       <div className="reset_form_header">Reset Your Password</div>
@@ -18,6 +44,7 @@ export const SendMail = ({ userInfos }) => {
             </div>
           </label>
         </div>
+        {error && <div className="error_text">{error}</div>}
         <div className="reset_right">
           <img src={userInfos?.picture} alt="" />
           <span>{userInfos?.email}</span>
@@ -28,7 +55,12 @@ export const SendMail = ({ userInfos }) => {
         <Link to="/login" className="gray_btn">
           Not You?
         </Link>
-        <button type="submit" className="blue_btn">
+        <button
+          onClick={() => {
+            sendMail();
+          }}
+          className="blue_btn"
+        >
           Continute
         </button>
       </div>
