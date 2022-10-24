@@ -60,7 +60,7 @@ export const ResetPassword = () => {
             setVisible={setVisible}
             setError={setError}
             setUserInfos={setUserInfos}
-          /> 
+          />
         )}
         {visible === 1 && userInfos && (
           <SendMail
@@ -92,6 +92,12 @@ export const ResetPassword = () => {
             setPassword={setPassword}
             conf_pass={conf_pass}
             setConfPass={setConfPass}
+            user={user}
+            email={email}
+            setLoading={setLoading}
+            error={error}
+            setError={setError}
+
           />
         )}
       </div>

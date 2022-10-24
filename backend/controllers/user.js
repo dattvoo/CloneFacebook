@@ -213,7 +213,24 @@ exports.validateResetCode = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ message: error.message })
   }
-
 }
 
+exports.changeNewPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    const crytedPassword = await bcrypt.hash(newPassword, 12);
+    // const user = await User.findOneAndUpdate({email}, {password: crytedPassword});
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "Account is not exist!" })
+    }
+    const userUpdate = await User.findOneAndUpdate({ email }, { password: crytedPassword }, { new: true });
+    return res.status(200).json({
+      userUpdate,
+      message: "Password is updated successfully!"
+    })
+  } catch (error) {
+    return res.status(400).json({ message: error.message })
 
+  }
+}
