@@ -1,5 +1,5 @@
-exports.generateCode = (lenght) => {
-    const code = "";
+function generateCode(lenght) {
+    let code = "";
     let schema = "0123456789";
 
     for (let i = 0; i < lenght; i++) {
@@ -7,3 +7,4 @@ exports.generateCode = (lenght) => {
     }
     return code;
 }
+module.exports = generateCode;
