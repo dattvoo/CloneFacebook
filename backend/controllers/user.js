@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const {
   validateEmail,
   validateLength,
@@ -9,7 +10,7 @@ const bcrypt = require("bcrypt");
 const { generateToken } = require("../helpers/tokens");
 const { sendVerificationEmail, sendResetPassword } = require("../helpers/mailer");
 const Code = require("../models/Code");
-const { default: generateCode } = require("../helpers/generateCode");
+const generateCode = require("../helpers/generateCode");
 exports.register = async (req, res) => {
   try {
     const {
@@ -187,15 +188,32 @@ exports.senResetPasswordCode = async (req, res) => {
     const code = generateCode(5);
     const saveCode = await new Code({
       code,
-      user: user._id
-    });
-    sendResetPassword(user.email,user.first_name,code);
+      user: user.id
+    }).save();
+    sendResetPassword(user.email, user.first_name, code);
     return res.status(200).json({
       message: "Email reset code has been sent to your email"
     })
   } catch (error) {
     return res.status(400).json({ message: error.message })
   }
+}
+exports.validateResetCode = async (req, res) => {
+
+  try {
+    const { email, resetCode } = req.body;
+    const user = await User.findOne({ email });
+    const codeSchema = await Code.findOne({ user: user._id });
+    if (codeSchema.code !== resetCode) {
+      return res.status(400).json({
+        message: "Verification code is not wrong!"
+      })
+    }
+    return res.status(200).json("Verification code is success");
+  } catch (error) {
+    return res.status(400).json({ message: error.message })
+  }
+
 }
 
 
