@@ -6,9 +6,13 @@ import { LoggedInRoutes } from "./routes/LoggedInRoutes";
 import { NotLoggedInRoutes } from "./routes/NotLoggedInRoutes";
 import Activate from "./pages/home/Activate";
 import { ResetPassword } from "./pages/resetpassword";
+import { CreatePostPopup } from "./components/createPostPopup";
+import { useSelector } from "react-redux";
 function App() {
+  const user = useSelector(state => state.user);
   return (
     <div>
+      <CreatePostPopup user={user} />
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />
@@ -18,7 +22,7 @@ function App() {
         <Route element={<NotLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />
         </Route>
-        <Route element={<ResetPassword/>} path="/reset"/>
+        <Route element={<ResetPassword />} path="/reset" />
       </Routes>
     </div>
   );
