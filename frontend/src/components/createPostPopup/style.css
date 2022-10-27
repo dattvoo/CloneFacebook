@@ -54,58 +54,88 @@
   cursor: pointer;
 }
 .box_privacy span {
-    margin-bottom: 1px;
+  margin-bottom: 1px;
 }
 .flex_center {
-    min-height: 90px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 90px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .post_input {
-    position: relative;
-    outline: none;
-    border: none;
-    resize: none;
-    padding: 5px 15px;
-    margin-bottom: 10px;
-    width: 470px;
-    margin-left: 1px;
-    font-family: inherit;
-    font-size: 24px;
-    background: var(--bg-primary);
-    color: var(--color-primary);
+  position: relative;
+  outline: none;
+  border: none;
+  resize: none;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  width: 470px;
+  margin-left: 1px;
+  font-family: inherit;
+  font-size: 24px;
+  background: var(--bg-primary);
+  color: var(--color-primary);
 }
 .flex_center textarea {
-    min-height: 90px;
-    background: transparent;
-    overflow-y: visible;
-    position: absolute; 
+  min-height: 90px;
+  background: transparent;
+  overflow-y: visible;
+  position: absolute;
 }
 .post_emojis_wrap {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content:space-between;
-    padding: 10px 15px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 10px 15px;
 }
-.post_emojis_wrap img{
-   width: 39px;
-   cursor: pointer;
+.post_emojis_wrap img {
+  width: 39px;
+  cursor: pointer;
 }
 .post_emojis_wrap i:hover {
-    filter: invert(80%);
+  filter: invert(80%);
 }
 .comment_emoji_picker {
-    position: absolute;
-    right: 0;
-    bottom: 2.5rem;
+  position: absolute;
+  right: 0;
+  bottom: 2.5rem;
 }
 .rlmove {
-    right: -7rem;
+  right: -7rem;
 }
-
-
-
-
+.addtoyourpost {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0px 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid var(--bg-forth);
+}
+.addto_text {
+  width: 50%;
+  font-weight: 600;
+  font-size: 14px;
+}
+.post_header_right {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.post_submit {
+  width: calc(100% - 18px);
+  border : none;
+  outline: none;
+  margin: 5px 10px;
+  padding : 10px;
+  background-color: var(--blue-color);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer; 
+}
