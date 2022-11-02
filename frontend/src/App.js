@@ -8,11 +8,16 @@ import Activate from "./pages/home/Activate";
 import { ResetPassword } from "./pages/resetpassword";
 import { CreatePostPopup } from "./components/createPostPopup";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 function App() {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
+  const [showPostUp, setShowPostUp] = useState(true);
+  console.log("🚀 ~ file: App.js ~ line 15 ~ App ~ showPostUp", showPostUp)
+  
   return (
     <div>
-      <CreatePostPopup user={user} />
+        {showPostUp && <CreatePostPopup user={user} setShowPostUp={setShowPostUp} />}
+
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />
