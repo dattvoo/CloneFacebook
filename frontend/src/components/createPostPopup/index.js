@@ -1,18 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AddToYourPost } from "./AddToYourPost";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
+import { ImagePreview } from "./ImagePreview";
 import "./style.css";
 
 export const CreatePostPopup = ({ user, setShowPostUp }) => {
-  const [cursorPosition, setCursorPosition] = useState();
   const [text, setText] = useState("");
-  const [showPrevent, setShowPrevent] = useState(false);
-  const textRef = useRef(null);
+  const [showPrevent, setShowPrevent] = useState(true);
+  const [images, setImages] = useState([]);
 
-
-  useEffect(() => {
-    textRef.current.selectionEnd = cursorPosition;
-  }, [cursorPosition]);
   return (
     <div className="blur">
       <div className="postBox">
@@ -36,25 +32,20 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
           </div>
         </div>
 
-        {!showPrevent && (
+        {!showPrevent ? (
           <>
-            <div className="flex_center">
-              <textarea
-                ref={textRef}
-                maxLength="100"
-                value={text}
-                className="post_input"
-                placeholder={`What's on your mind, ${user?.first_name}?`}
-                onChange={(e) => setText(e.target.value)}
-              ></textarea>
-            </div>
             <EmojiPickerBackgrounds
               text={text}
               setText={setText}
-              textRef={textRef}
+              user={user}
             />
           </>
-        )}
+        ) : <ImagePreview text={text}
+          setText={setText}
+          user={user}
+          images={images}
+          setImages={setImages}
+        />}
         <AddToYourPost />
         <button className="post_submit">Post</button>
       </div>
