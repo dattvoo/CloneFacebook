@@ -9,11 +9,13 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
   const [showPrevent, setShowPrevent] = useState(true);
   const [images, setImages] = useState([]);
 
+
   return (
     <div className="blur">
       <div className="postBox">
         <div className="box_header">
           <div className="small_circle" onClick={() => setShowPostUp(false)}>
+
             <i className="exit_icon" />
           </div>
           <span>Create Post</span>
@@ -28,6 +30,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
               <img src="../../../icons/public.png" alt="" />
               <span>Public</span>
               <i className="arrowDown_icon" ></i>
+
             </div>
           </div>
         </div>
@@ -48,6 +51,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
         />}
         <AddToYourPost />
         <button className="post_submit">Post</button>
+
       </div>
     </div>
   );

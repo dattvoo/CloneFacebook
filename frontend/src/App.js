@@ -17,6 +17,7 @@ function App() {
   return (
     <div>
         {showPostUp && <CreatePostPopup user={user} setShowPostUp={setShowPostUp} />}
+
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />
