@@ -1,10 +1,11 @@
 import React from "react";
 import { Photo, Feeling, Dots } from "../../svg";
-export const AddToYourPost = () => {
+export const AddToYourPost = ({ setShowPrevent }) => {
   return (
     <div className="addtoyourpost">
       <div className="addto_text">Add to your post</div>
-      <div className="post_header_right hover1">
+      <div className="post_header_right hover1" onClick={() => setShowPrevent(true)}>
+
         <Photo color="#45bd62" />
       </div>
       <div className="post_header_right hover1">

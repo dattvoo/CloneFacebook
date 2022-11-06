@@ -1,30 +1,28 @@
 import React, { useRef } from "react";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 
-export const ImagePreview = ({ text, setText, user, images, setImages }) => {
-  console.log(
-    "🚀 ~ file: ImagePreview.js ~ line 5 ~ ImagePreview ~ images",
-    images
-  );
+export const ImagePreview = ({
+  text,
+  setText,
+  user,
+  images,
+  setImages,
+  setShowPrevent,
+}) => {
+
   const imageInputRef = useRef(null);
   const handleImages = (e) => {
     let files = Array.from(e.target.files);
-
-
     files.forEach((image) => {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = (readerEvent) => {
-        console.log(
-          "🚀 ~ file: ImagePreview.js ~ line 17 ~ files.forEach ~ readerEvent",
-          readerEvent
-        );
         setImages((images) => [...images, readerEvent.target.result]);
       };
     });
   };
   return (
-    <div className="overflow_a">
+    <div className="overflow_a scrollbar">
       <EmojiPickerBackgrounds text={text} setText={setText} user={user} type2 />
       <div className="add_pics_wrap">
         <input
@@ -35,10 +33,52 @@ export const ImagePreview = ({ text, setText, user, images, setImages }) => {
           onChange={handleImages}
         />
         {images && images.length ? (
-          <img src={images[0]} alt="" />
+          <div className="add_pics_inside1 p0">
+            <div className="preview_actions">
+              <button className="hover1">
+                <i className="edit_icon"></i>
+                Edit
+              </button>
+              <button className="hover1">
+                <i className="addPhoto_icon"></i>
+                Add Photos/Videos
+              </button>
+            </div>
+            <div
+              className="small_white_circle"
+              onClick={() => setShowPrevent(false)}
+            >
+              <i className="exit_icon"></i>
+            </div>
+            <div
+              className={
+                images.length === 1
+                  ? "preview1"
+                  : images.length === 2
+                  ? "preview2"
+                  : images.length === 3
+                  ? "preview3"
+                  : images.length === 4
+                  ? "preview4"
+                  : images.length === 5
+                  ? "preview5"
+                  : images % 2 === 0
+                  ? "preview6"
+                  : "preview6 singular_grid"
+              }
+            >
+              {images.map((img, index) => {
+                return <img key={index} src={img} />;
+              })}
+            </div>
+          </div>
         ) : (
           <div className="add_pics_inside1">
-            <div className="small_white_circle">
+            <div
+              className="small_white_circle"
+              onClick={() => setShowPrevent(false)}
+            >
+
               <i className="exit_icon" />
             </div>
             <div
