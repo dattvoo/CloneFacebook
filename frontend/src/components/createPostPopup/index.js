@@ -51,8 +51,6 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
           setShowPrevent={setShowPrevent}
         />}
         <AddToYourPost setShowPrevent={setShowPrevent} />
-        />}
-        <AddToYourPost />
         <button className="post_submit">Post</button>
       </div>
     </div>
