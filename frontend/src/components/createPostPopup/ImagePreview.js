@@ -9,14 +9,10 @@ export const ImagePreview = ({
   setImages,
   setShowPrevent,
 }) => {
-  console.log(
-    "🚀 ~ file: ImagePreview.js ~ line 5 ~ ImagePreview ~ images",
-    images
-  );
+
   const imageInputRef = useRef(null);
   const handleImages = (e) => {
     let files = Array.from(e.target.files);
-
     files.forEach((image) => {
       const reader = new FileReader();
       reader.readAsDataURL(image);
@@ -82,6 +78,7 @@ export const ImagePreview = ({
               className="small_white_circle"
               onClick={() => setShowPrevent(false)}
             >
+
               <i className="exit_icon" />
             </div>
             <div

@@ -5,6 +5,7 @@ export const AddToYourPost = ({ setShowPrevent }) => {
     <div className="addtoyourpost">
       <div className="addto_text">Add to your post</div>
       <div className="post_header_right hover1" onClick={() => setShowPrevent(true)}>
+
         <Photo color="#45bd62" />
       </div>
       <div className="post_header_right hover1">

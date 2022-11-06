@@ -146,6 +146,7 @@
   max-height: 500px;
   overflow-y: auto;
   overflow-x: hidden;
+
 }
 .input2 {
   position: relative;
@@ -239,7 +240,7 @@
   font-size: 14px;
   position: absolute;
   right: 10px;
-}
+
 
 .p0 {
   padding: 0;
@@ -358,13 +359,6 @@
 .singular_grid img:nth-child(1) {
   grid-column: 1/3;
 }
-
-
-
-
-
-
-
 
 
 
