@@ -8,7 +8,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
   const [text, setText] = useState("");
   const [showPrevent, setShowPrevent] = useState(true);
   const [images, setImages] = useState([]);
-
+  const [background, setBackground] = useState("");
 
   return (
     <div className="blur">
@@ -41,6 +41,8 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
               text={text}
               setText={setText}
               user={user}
+              background={background}
+              setBackground={setBackground}
             />
           </>
         ) : <ImagePreview text={text}
@@ -49,6 +51,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
           images={images}
           setImages={setImages}
           setShowPrevent={setShowPrevent}
+
         />}
         <AddToYourPost setShowPrevent={setShowPrevent} />
         <button className="post_submit">Post</button>
