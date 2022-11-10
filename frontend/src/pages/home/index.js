@@ -8,7 +8,7 @@ import { Stories } from "../../components/home/stories";
 import "./style.css";
 import { CreatePost } from "../../components/createPost";
 import { SendVerification } from "../../components/header/SendVerification";
-export default function Home() {
+export default function Home({ setShowPostUp }) {
   const user = useSelector(state => state.user);
   return (
     <div className="home">
@@ -17,7 +17,7 @@ export default function Home() {
       <div className="home_middle">
         <Stories />
         {user.verified === false && <SendVerification user={user} />}
-        <CreatePost />
+        <CreatePost setShowPostUp={setShowPostUp} />
       </div>
       <RightHome user={user} />
     </div>

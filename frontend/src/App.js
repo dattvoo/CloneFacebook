@@ -12,17 +12,16 @@ import { useState } from "react";
 function App() {
   const user = useSelector((state) => state.user);
   const [showPostUp, setShowPostUp] = useState(true);
-  console.log("🚀 ~ file: App.js ~ line 15 ~ App ~ showPostUp", showPostUp)
-  
+
   return (
     <div>
-        {showPostUp && <CreatePostPopup user={user} setShowPostUp={setShowPostUp} />}
+      {showPostUp && <CreatePostPopup user={user} setShowPostUp={setShowPostUp} />}
 
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />
           <Route path="/activate/:token" element={<Activate />} exact />
-          <Route path="/" element={<Home />} exact />
+          <Route path="/" element={<Home setShowPostUp={setShowPostUp} />} exact />
         </Route>
         <Route element={<NotLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />

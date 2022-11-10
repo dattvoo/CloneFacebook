@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import useClickOutSide from "../../helpers/clickOutSide";
 import { AddToYourPost } from "./AddToYourPost";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 import { ImagePreview } from "./ImagePreview";
@@ -6,13 +7,16 @@ import "./style.css";
 
 export const CreatePostPopup = ({ user, setShowPostUp }) => {
   const [text, setText] = useState("");
-  const [showPrevent, setShowPrevent] = useState(true);
+  const [showPrevent, setShowPrevent] = useState(false);
   const [images, setImages] = useState([]);
   const [background, setBackground] = useState("");
-
+  const postupRef = useRef(null);
+  useClickOutSide(postupRef, () => {
+    setShowPostUp(false);
+  });
   return (
     <div className="blur">
-      <div className="postBox">
+      <div className="postBox" ref={postupRef}>
         <div className="box_header">
           <div className="small_circle" onClick={() => setShowPostUp(false)}>
 
