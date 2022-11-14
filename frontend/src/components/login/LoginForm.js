@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import LoginInput from "../../components/inputs/loginInput";
+import LoginInput from "../inputs/loginInput";
 import { useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
@@ -15,7 +15,7 @@ const loginInfos = {
 export default function LoginForm({ setVisible }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [login, setLogin] = useState(loginInfos);
+  const [login, setLogin] = useState<Object>(loginInfos);
   const { email, password } = login;
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
@@ -74,8 +74,8 @@ export default function LoginForm({ setVisible }) {
                 <LoginInput
                   type="text"
                   name="email"
-                  placeholder="Email address or phone number"
                   onChange={handleLoginChange}
+                  placeholder="Email address or phone number"
                 />
                 <LoginInput
                   type="password"

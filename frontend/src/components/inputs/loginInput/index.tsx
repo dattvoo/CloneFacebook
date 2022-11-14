@@ -1,7 +1,17 @@
 import "./style.css";
 import { useField, ErrorMessage } from "formik";
 import { useMediaQuery } from "react-responsive";
-export default function LoginInput({ placeholder, bottom, ...props }) {
+
+interface IProps {
+  name: string;
+  type: string;
+  placeholder?: string;
+  bottom?: string;
+  onChange?: (e: any) => void;
+}
+
+export default function LoginInput({ placeholder, bottom, ...props }: IProps) {
+  //@ts-ignore
   const [field, meta] = useField(props);
   const desktopView = useMediaQuery({
     query: "(min-width: 850px)",
@@ -15,7 +25,9 @@ export default function LoginInput({ placeholder, bottom, ...props }) {
           }
           style={{ transform: "translateY(3px)" }}
         >
-          {meta.touched && meta.error && <ErrorMessage name={field.name} />}
+          {meta.touched && meta.error && (
+            <ErrorMessage component="div" name={field.name} />
+          )}
           {meta.touched && meta.error && (
             <div
               className={desktopView ? "error_arrow_left" : "error_arrow_top"}
@@ -25,7 +37,9 @@ export default function LoginInput({ placeholder, bottom, ...props }) {
       )}
       <input
         className={meta.touched && meta.error ? "input_error_border" : ""}
+        // @ts-ignore
         type={field.type}
+        // @ts-ignore
         name={field.name}
         placeholder={placeholder}
         {...field}
