@@ -1,6 +1,11 @@
-import React from "react";
 import { Photo, Feeling, Dots } from "../../svg";
-export const AddToYourPost = ({ setShowPrevent }) => {
+
+interface IProps {
+  setShowPrevent : React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+export const AddToYourPost = ({ setShowPrevent }: IProps) => {
   return (
     <div className="addtoyourpost">
       <div className="addto_text">Add to your post</div>
