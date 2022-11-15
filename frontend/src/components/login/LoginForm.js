@@ -15,7 +15,7 @@ const loginInfos = {
 export default function LoginForm({ setVisible }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [login, setLogin] = useState<Object>(loginInfos);
+  const [login, setLogin] = useState(loginInfos);
   const { email, password } = login;
   const handleLoginChange = (e) => {
     const { name, value } = e.target;

@@ -49,7 +49,8 @@ export const CreatePostPopup = ({ user, setShowPostUp }) => {
               setBackground={setBackground}
             />
           </>
-        ) : <ImagePreview text={text}
+        ) : <ImagePreview 
+          text={text}
           setText={setText}
           user={user}
           images={images}
