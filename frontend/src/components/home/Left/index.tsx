@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { homeLeft } from "../../../constant/HomeLeft";
 import { ArrowDown1 } from "../../../svg";
 import { LeftLink } from "./LeftLink";
 import "./style.css";
-export const LeftHome = ({ user }) => {
+export const LeftHome = ({ user }:any) => {
   const [visiable, setVisiable] = useState(false);
   return (
     <div className="left_home scrollbar">

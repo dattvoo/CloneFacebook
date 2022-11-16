@@ -18,7 +18,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
   const [text, setText] = useState("");
   const [showPrevent, setShowPrevent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<[]>([]);
   const [background, setBackground] = useState("");
   const postupRef = useRef(null);
   useClickOutSide(postupRef, () => {
@@ -28,7 +28,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
     type: string | null,
     background: string,
     text: string,
-    images: string | null,
+    images: [] | null,
     user: any,
     token: string
   ) => {

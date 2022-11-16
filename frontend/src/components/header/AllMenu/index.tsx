@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.css";
 
 import { MenuLeft } from "./MenuLeft";
@@ -8,8 +7,8 @@ export const AllMenu = () => {
     <div className="all_menu">
       <div className="all_menu_header">Menu</div>
       <div className="all_menu_wrap scrollbar">
-       <MenuLeft/>
-       <MenuRight/>
+        <MenuLeft />
+        <MenuRight />
       </div>
     </div>
   );

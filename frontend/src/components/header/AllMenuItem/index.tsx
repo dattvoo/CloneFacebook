@@ -1,6 +1,11 @@
-import React from 'react'
 
-export const AllMenuItem = ({name, description, icon}) => {
+interface IProps {
+    name: string;
+    description: string;
+    icon: string
+}
+
+export const AllMenuItem = ({name, description, icon} :IProps) => {
     return (
         <div className="all_menu_item hover1">
             <img src={`../../left/${icon}.png`} alt="" />

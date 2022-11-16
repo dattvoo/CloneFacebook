@@ -1,6 +1,19 @@
 import React, { useRef } from "react";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 
+
+
+interface IProps {
+  text: string;
+  setText: any;
+  user?: any;
+  type2?: boolean;
+  background?: any;
+  setBackground?: any;
+  images: [];
+  setImages: any;
+  setShowPrevent: any;
+}
 export const ImagePreview = ({
   text,
   setText,
@@ -8,16 +21,16 @@ export const ImagePreview = ({
   images,
   setImages,
   setShowPrevent,
-}) => {
+}:IProps) => {
 
   const imageInputRef = useRef(null);
-  const handleImages = (e) => {
+  const handleImages = (e:any) => {
     let files = Array.from(e.target.files);
-    files.forEach((image) => {
+    files.forEach((image:any) => {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = (readerEvent) => {
-        setImages((images) => [...images, readerEvent.target.result]);
+        setImages((images:any) => [...images, readerEvent?.target?.result]);
       };
     });
   };
@@ -62,12 +75,12 @@ export const ImagePreview = ({
                   ? "preview4"
                   : images.length === 5
                   ? "preview5"
-                  : images % 2 === 0
+                  : images.length % 2 === 0
                   ? "preview6"
                   : "preview6 singular_grid"
               }
             >
-              {images.map((img, index) => {
+              {images.map((img:any, index:number) => {
                 return <img key={index} src={img} />;
               })}
             </div>
@@ -83,7 +96,9 @@ export const ImagePreview = ({
             </div>
             <div
               className="add_col"
-              onClick={() => imageInputRef.current.click()}
+              onClick={() =>
+                // @ts-ignore
+                 imageInputRef.current.click()}
             >
               <div className="add_circle">
                 <i className="addPhoto_icon" />

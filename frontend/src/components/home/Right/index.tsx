@@ -1,9 +1,8 @@
-import React from "react";
 import { Dots, NewRoom, Search } from "../../../svg";
 import { Splitter1 } from "../../Splitter1";
 import { ContactList } from "./ContactList";
 import "./style.css";
-export const RightHome = ({user}) => {
+export const RightHome = ({user}:any) => {
     const color = "#65676b";
   return (
     <div className="right_home">

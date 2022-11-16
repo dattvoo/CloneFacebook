@@ -1,8 +1,8 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Splitter1 } from "../Splitter1";
+import { Feeling, LiveVideo, Photo } from "../../svg";
 import "./style.css";
-import { Feeling, LiveVideo, Photo } from "../../svg"
+
+
 export const CreatePost = ({ setShowPostUp }) => {
   const user = useSelector(state => state.user);
   return (
