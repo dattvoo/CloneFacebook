@@ -1,5 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
 import Picker from "emoji-picker-react";
+import { useEffect, useRef, useState } from "react";
+
+interface IProps {
+  text: string;
+  setText: any;
+  user?: any;
+  type2?: boolean;
+  background?: any;
+  setBackground?: any;
+}
 
 export const EmojiPickerBackgrounds = ({
   text,
@@ -8,7 +17,7 @@ export const EmojiPickerBackgrounds = ({
   type2,
   background,
   setBackground,
-}) => {
+}: IProps) => {
   const [picker, setPicker] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [cursorPosition, setCursorPosition] = useState();
@@ -16,15 +25,20 @@ export const EmojiPickerBackgrounds = ({
   const backgroundRef = useRef(null);
 
   useEffect(() => {
+    // @ts-ignore
     textRef.current.selectionEnd = cursorPosition;
   }, [cursorPosition]);
-  const handleEmoji = ({ emoji }) => {
+  const handleEmoji = ({ emoji }: any) => {
     const ref = textRef.current;
+    // @ts-ignore
     ref.focus();
+    // @ts-ignore
     const start = text.substring(0, ref.selectionStart);
+    // @ts-ignore
     const end = text.substring(ref.selectionStart);
     const newText = start + emoji + end;
     setText(newText);
+    // @ts-ignore
     setCursorPosition(start.length + 2);
   };
 
@@ -39,13 +53,17 @@ export const EmojiPickerBackgrounds = ({
     "../../../images/postBackgrounds/8.jpg",
     "../../../images/postBackgrounds/9.jpg",
   ];
-  const handleChangeBackground = (index) => {
+  const handleChangeBackground = (index: number) => {
+    // @ts-ignore
     backgroundRef.current.classList.add("bgHandler");
+    // @ts-ignore
     backgroundRef.current.style.backgroundImage = `url(${postBackgrounds[index]})`;
     setBackground(postBackgrounds[index]);
   };
   const removeBackground = () => {
+    // @ts-ignore
     backgroundRef.current.classList.remove("bgHandler");
+    // @ts-ignore
     backgroundRef.current.style.backgroundImage = "";
   };
   return (
@@ -54,13 +72,11 @@ export const EmojiPickerBackgrounds = ({
         <textarea
           style={{
             paddingTop: `${
-              background
-                ? Math.abs(textRef.current.value.length * 0.1 - 32)
-                : "0"
-            }%`,
+              // @ts-ignore
+              background ? Math.abs(textRef?.current?.value?.length * 0.1 - 32): "0"}%`,
           }}
           ref={textRef}
-          maxLength="250"
+          maxLength={250}
           value={text}
           className="post_input"
           placeholder={`What's on your mind, ${user?.first_name}?`}

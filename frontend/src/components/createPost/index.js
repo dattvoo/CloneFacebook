@@ -6,7 +6,7 @@ import { Feeling, LiveVideo, Photo } from "../../svg"
 export const CreatePost = ({ setShowPostUp }) => {
   const user = useSelector(state => state.user);
   return (
-    <div className="create_post" onL>
+    <div className="create_post" >
       <div className="create_post_header">
         <img src={user.picture} alt="" />
         <div className="open_post hover2" onClick={() => setShowPostUp(true)}>
