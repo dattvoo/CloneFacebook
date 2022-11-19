@@ -387,3 +387,30 @@
   height: 360px;
   margin-top: 10px;
 }
+/* Post Error */
+.postError {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-primary);
+  gap: 10px;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #b94a48;
+  animation: anim 0.3s;
+}
+
+@keyframes anim {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/* Post Error */

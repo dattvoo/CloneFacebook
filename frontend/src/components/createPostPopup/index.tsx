@@ -1,23 +1,23 @@
 import axios from "axios";
 import { useRef, useState } from "react";
+import PlulseLoader from "react-spinners/PulseLoader";
 import useClickOutSide from "../../helpers/clickOutSide";
 import { AddToYourPost } from "./AddToYourPost";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 import { ImagePreview } from "./ImagePreview";
+import { PostError } from "./PostError";
 import "./style.css";
-import PlulseLoader from "react-spinners/PulseLoader";
-interface IStates {
-  loading: Boolean;
-}
+
 interface IProps {
   user: any;
   setShowPostUp: any;
 }
 
 export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
-  const [text, setText] = useState("");
-  const [showPrevent, setShowPrevent] = useState(false);
+  const [text, setText] = useState<string>("");
+  const [showPrevent, setShowPrevent] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>("asdasdsadsad");
   const [images, setImages] = useState<[]>([]);
   const [background, setBackground] = useState("");
   const postupRef = useRef(null);
@@ -48,7 +48,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
           },
         }
       );
-      return data;
+      return "success";
     } catch (error: any) {
       return error.response.data.message;
     }
@@ -56,27 +56,30 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
   const handlePostSubmit = async () => {
     if (background) {
       setLoading(true);
-      const data = await createPost(
+      const respone = await createPost(
         null,
         background,
         text,
         null,
-        user.id,
-        user.token
+        user?.id,
+        user?.token
       );
-      console.log(
-        "🚀 ~ file: index.tsx ~ line 66 ~ handlePostSubmit ~ data",
-        data
-      );
+
       setLoading(false);
-      setBackground("");
-      setText("");
+      if (respone === "success") {
+        setBackground("");
+        setText("");
+        setShowPostUp(false);
+      } else {
+        setError(respone);
+      }
     }
   };
 
   return (
     <div className="blur">
       <div className="postBox" ref={postupRef}>
+        {error && <PostError error={error} setError={setError} />}
         <div className="box_header">
           <div className="small_circle" onClick={() => setShowPostUp(false)}>
             <i className="exit_icon" />
@@ -124,7 +127,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
             handlePostSubmit();
           }}
         >
-         {loading ? <PlulseLoader color="#fff" size={5}/> : "Post"}
+          {loading ? <PlulseLoader color="#fff" size={5} /> : "Post"}
         </button>
       </div>
     </div>
