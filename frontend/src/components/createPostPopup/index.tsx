@@ -138,6 +138,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
             images={images}
             setImages={setImages}
             setShowPrevent={setShowPrevent}
+            setError = {setError}
           />
         )}
         <AddToYourPost setShowPrevent={setShowPrevent} />
