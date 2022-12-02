@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 
-
-
 interface IProps {
   text: string;
   setText: any;
@@ -13,6 +11,7 @@ interface IProps {
   images: [];
   setImages: any;
   setShowPrevent: any;
+  setError?: React.Dispatch<React.SetStateAction<string>> | any;
 }
 export const ImagePreview = ({
   text,
@@ -21,16 +20,33 @@ export const ImagePreview = ({
   images,
   setImages,
   setShowPrevent,
-}:IProps) => {
-
+  setError,
+}: IProps) => {
   const imageInputRef = useRef(null);
-  const handleImages = (e:any) => {
+  const handleImages = (e: any) => {
     let files = Array.from(e.target.files);
-    files.forEach((image:any) => {
+    files.forEach((image: any) => {
+      console.log(image.type === "image/jpeg");
+      if (
+        image.type !== "image/jpeg" &&
+        image.type !== "image/png" &&
+        image.type !== "image/webp" &&
+        image.type !== "image/gif" &&
+        image.type !== "image/jpg"
+      ) {
+        setError(
+          `${image.name} format is not supported! Only Jpeg, Png, Webp, Gif are allowed`
+        );
+        return;
+      } else if (image.size > 1024 * 1024 * 5) {
+        files = files.filter((img: any) => img?.name !== image.name);
+        setError(`${image.name} size is too large max 5mb alowed`);
+        return;
+      }
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = (readerEvent) => {
-        setImages((images:any) => [...images, readerEvent?.target?.result]);
+        setImages((images: any) => [...images, readerEvent?.target?.result]);
       };
     });
   };
@@ -40,6 +56,7 @@ export const ImagePreview = ({
       <div className="add_pics_wrap">
         <input
           type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif"
           multiple
           hidden
           ref={imageInputRef}
@@ -61,7 +78,7 @@ export const ImagePreview = ({
               className="small_white_circle"
               onClick={() => setShowPrevent(false)}
             >
-              <i className="exit_icon"></i>
+              <i className="exit_icon" onClick={() => setImages([])}></i>
             </div>
             <div
               className={
@@ -80,7 +97,7 @@ export const ImagePreview = ({
                   : "preview6 singular_grid"
               }
             >
-              {images.map((img:any, index:number) => {
+              {images.map((img: any, index: number) => {
                 return <img key={index} src={img} />;
               })}
             </div>
@@ -91,14 +108,14 @@ export const ImagePreview = ({
               className="small_white_circle"
               onClick={() => setShowPrevent(false)}
             >
-
               <i className="exit_icon" />
             </div>
             <div
               className="add_col"
               onClick={() =>
                 // @ts-ignore
-                 imageInputRef.current.click()}
+                imageInputRef.current.click()
+              }
             >
               <div className="add_circle">
                 <i className="addPhoto_icon" />

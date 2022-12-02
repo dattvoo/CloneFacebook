@@ -400,12 +400,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 999;
   color: #b94a48;
   animation: anim 0.3s;
   border-radius: 5px;
 }
-
+.postError_error {
+  width: 65%;
+  font-weight:  600;
+}
 @keyframes anim {
   0% {
     width: 0;
