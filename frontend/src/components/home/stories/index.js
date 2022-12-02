@@ -18,7 +18,6 @@ export const Stories = () => {
 
 
 
-  console.log("maxStories", maxStories);
 
 
 

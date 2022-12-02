@@ -2,11 +2,13 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import PlulseLoader from "react-spinners/PulseLoader";
 import useClickOutSide from "../../helpers/clickOutSide";
+import dataURItoBlob from "../../helpers/dataURLtoBlob";
 import { AddToYourPost } from "./AddToYourPost";
 import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 import { ImagePreview } from "./ImagePreview";
 import { PostError } from "./PostError";
 import "./style.css";
+import { uploadImages } from "./uploadImages";
 
 interface IProps {
   user: any;
@@ -17,7 +19,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
   const [text, setText] = useState<string>("");
   const [showPrevent, setShowPrevent] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>("asdasdsadsad");
+  const [error, setError] = useState<string>("");
   const [images, setImages] = useState<[]>([]);
   const [background, setBackground] = useState("");
   const postupRef = useRef(null);
@@ -26,7 +28,7 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
   });
   const createPost = async (
     type: string | null,
-    background: string,
+    background: string | null,
     text: string,
     images: [] | null,
     user: any,
@@ -64,7 +66,6 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
         user?.id,
         user?.token
       );
-
       setLoading(false);
       if (respone === "success") {
         setBackground("");
@@ -73,6 +74,25 @@ export const CreatePostPopup = ({ user, setShowPostUp }: IProps) => {
       } else {
         setError(respone);
       }
+    } else if (images && images.length) {
+      setLoading(true);
+      const postImage: Blob[] = images.map((img) => {
+        return dataURItoBlob(img);
+      });
+      const path = `${user.username}/postImages`;
+      let formData: FormData = new FormData();
+      formData.append("path", path);
+      postImage.forEach((image) => {
+        formData.append("file", image);
+      });
+      const responeImg = await uploadImages(formData, path, user.token);
+      await createPost(null, null, text, responeImg, user.id, user.token);
+      setLoading(false);
+      setText("");
+      setImages([]);
+    } else if (text) {
+    } else {
+      console.log("nothing");
     }
   };
 
